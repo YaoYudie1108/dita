@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="nfv_lb_create_lb" xml:lang="ja">
+  <title>Create LB</title>
+  <shortdesc>ロードバランサーを作成します。</shortdesc>
+  <refbody>
+    <!-- メソッド名とURIのセクション -->
+    <section conkeyref="ep_parts/section_nfv_bms_ep">
+      <title/>
+      <p/>
+    </section>
+    <section>
+      <title conkeyref="common_parts/section_title_method_and_uri"/>
+      <p><ph otherprops="post"><keyword>POST</keyword></ph></p>
+      <p>/lb/nfv/loadbalancers</p>
+    </section>
+    <!-- レスポンスコードのセクション -->
+    <section>
+      <title conkeyref="common_parts/section_title_response_codes"/>
+      <p><ph conkeyref="common_parts/ph_normal_response_codes"/></p>
+      <p><ph conkeyref="common_parts/ph_error_response_codes"/></p>
+    </section>
+    <!-- リクエストパラメータのセクション -->
+    <section>
+      <title conkeyref="common_parts/section_title_request_parameters"/>
+      <table colsep="1" frame="all" rowsep="1">
+        <tgroup cols="5">
+          <colspec conkeyref="common_parts/colspec_request_name"/>
+          <colspec conkeyref="common_parts/colspec_request_in"/>
+          <colspec conkeyref="common_parts/colspec_request_type"/>
+          <colspec conkeyref="common_parts/colspec_request_default_value"/>
+          <colspec conkeyref="common_parts/colspec_request_descripion"/>
+          <thead>
+            <row conkeyref="common_parts/row_header_request_parameters">
+              <entry/>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>loadbalancer</entry>
+              <entry>body</entry>
+              <entry>object</entry>
+              <entry>必須</entry>
+              <entry>ロードバランサーのオブジェクト</entry>
+            </row>
+            <row>
+              <entry>name</entry>
+              <entry>body</entry>
+              <entry>string</entry>
+              <entry>必須</entry>
+              <entry>
+                <p>ロードバランサーの名前</p>
+                <p>プロジェクトの中で一意にする必要があります。</p>
+              </entry>
+            </row>
+            <row>
+              <entry>router_id</entry>
+              <entry>body</entry>
+              <entry>uuid</entry>
+              <entry>必須</entry>
+              <entry>ロードバランサーを所属させる仮想ルータのID</entry>
+            </row>
+            <row>
+              <entry>description</entry>
+              <entry>body</entry>
+              <entry>string</entry>
+              <entry>任意</entry>
+              <entry>ロードバランサーの説明</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <!-- リクエストパラメータの構造のセクション -->
+      <!-- <codeblock xml:space="preserve" spectitle="（パラメータ構造）"/> -->
+    </section>
+    <!-- レスポンスボディのセクション -->
+    <section>
+      <title conkeyref="common_parts/section_title_response_body"/>
+      <table colsep="1" frame="all" rowsep="1">
+        <tgroup cols="3">
+          <colspec conkeyref="common_parts/colspec_response_name"/>
+          <colspec conkeyref="common_parts/colspec_response_type"/>
+          <colspec conkeyref="common_parts/colspec_response_description"/>
+          <thead>
+            <row conkeyref="common_parts/row_header_response_body">
+              <entry/>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>loadbalancer</entry>
+              <entry>object</entry>
+              <entry>ロードバランサーのオブジェクト</entry>
+            </row>
+            <row>
+              <entry>name</entry>
+              <entry>string</entry>
+              <entry>ロードバランサーの名前</entry>
+            </row>
+            <row>
+              <entry>router_id</entry>
+              <entry>uuid</entry>
+              <entry>ロードバランサーが所属する仮想ルータのID</entry>
+            </row>
+            <row>
+              <entry>id</entry>
+              <entry><ph otherprops="v3.1">string</ph></entry>
+              <entry>ロードバランサーのID</entry>
+            </row>
+            <row>
+              <entry>description</entry>
+              <entry>string</entry>
+              <entry>ロードバランサーの説明</entry>
+            </row>
+            <row>
+              <entry>security_group_id</entry>
+              <entry>uuid</entry>
+              <entry>ロードバランサーに設定されているセキュリティグループのID</entry>
+            </row>
+            <row>
+              <entry>status</entry>
+              <entry>string</entry>
+              <entry>設定ステータス</entry>
+            </row>
+            <row>
+              <entry>tenant_id</entry>
+              <entry><ph otherprops="v3.1">string</ph></entry>
+              <entry>ロードバランサーが属するプロジェクト</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    <!-- リクエスト例のセクション -->
+    <example>
+      <title conkeyref="common_parts/section_title_request_example"/>
+      <codeblock xml:space="preserve">{
+    "loadbalancer": {
+        "name": <ph otherprops="v3.1">"LB01"</ph>,
+        "description": "description",
+        "router_id": "77d3ea9a-aedf-4197-8c1b-cbd426453802"
+    }
+}</codeblock>
+    </example>
+    <!-- レスポンス例のセクション -->
+    <example>
+      <title conkeyref="common_parts/section_title_response_example"/>
+      <codeblock xml:space="preserve">{
+    "loadbalancer": {
+        "name": <ph otherprops="v3.1">"LB01"</ph>,
+        "router_id": "77d3ea9a-aedf-4197-8c1b-cbd426453802",
+        "id": "1281",
+        "description": "description",
+        "security_group_id": [],
+        "status": "BUILD",
+        "tenant_id": "da89e9e029b243e48d898f778148b404"
+    }
+}</codeblock>
+    </example>
+  </refbody>
+</reference>
